@@ -14,4 +14,4 @@ flutter's provider is rather very great in data management in your flutter app b
 so it is still a little bit confusing to me.
 
 at the end this is my second flutter app and my first time using node so the code 
-might be crude and not clean at so please forgive me 
+might be crude and not clean at all so please  over look the issues in it.
