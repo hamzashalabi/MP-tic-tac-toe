@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/resources/socket_methods.dart';
 import 'package:tictactoe/responsive/responsive.dart';
 import 'package:tictactoe/widgets/custom_button.dart';
 import 'package:tictactoe/widgets/custom_text.dart';
@@ -14,13 +15,17 @@ class JoinRoomView extends StatefulWidget {
 
 class _JoinRoomViewState extends State<JoinRoomView> {
   late final TextEditingController _nameController;
-  late final _gameController;
+  late final TextEditingController _gameController;
+  final SocketMethods _socketMethods = SocketMethods();
 
   @override
   void initState() {
     super.initState();
     _nameController = TextEditingController();
     _gameController = TextEditingController();
+    _socketMethods.joinRoomSuccessListener(context);
+    _socketMethods.errorOccurredListner(context);
+    _socketMethods.updatePlayerStateListener(context);
   }
 
   @override
@@ -71,7 +76,10 @@ class _JoinRoomViewState extends State<JoinRoomView> {
                 height: size.height * 0.03,
               ),
               CustomButton(
-                onPressed: () {},
+                onPressed: () => _socketMethods.joinRoom(
+                  _nameController.text,
+                  _gameController.text,
+                ),
                 buttonText: 'Join',
               ),
             ],
